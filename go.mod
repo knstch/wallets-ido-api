@@ -1,3 +1,3 @@
-module github.com/knstch/users-ido-api
+module github.com/knstch/wallets-ido-api
 
 go 1.24.1
