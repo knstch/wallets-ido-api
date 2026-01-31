@@ -21,27 +21,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetWalletByUserIDRequest struct {
+type GetWalletsByUserIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        uint64                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetWalletByUserIDRequest) Reset() {
-	*x = GetWalletByUserIDRequest{}
+func (x *GetWalletsByUserIDRequest) Reset() {
+	*x = GetWalletsByUserIDRequest{}
 	mi := &file_wallets_private_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetWalletByUserIDRequest) String() string {
+func (x *GetWalletsByUserIDRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetWalletByUserIDRequest) ProtoMessage() {}
+func (*GetWalletsByUserIDRequest) ProtoMessage() {}
 
-func (x *GetWalletByUserIDRequest) ProtoReflect() protoreflect.Message {
+func (x *GetWalletsByUserIDRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_wallets_private_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,19 +53,19 @@ func (x *GetWalletByUserIDRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetWalletByUserIDRequest.ProtoReflect.Descriptor instead.
-func (*GetWalletByUserIDRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetWalletsByUserIDRequest.ProtoReflect.Descriptor instead.
+func (*GetWalletsByUserIDRequest) Descriptor() ([]byte, []int) {
 	return file_wallets_private_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetWalletByUserIDRequest) GetUserId() uint64 {
+func (x *GetWalletsByUserIDRequest) GetUserId() uint64 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-type GetWalletByUserIDResponse struct {
+type GetWalletsByUserIDResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Pubkeys       []string               `protobuf:"bytes,5,rep,name=pubkeys,proto3" json:"pubkeys,omitempty"`
@@ -73,20 +73,20 @@ type GetWalletByUserIDResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetWalletByUserIDResponse) Reset() {
-	*x = GetWalletByUserIDResponse{}
+func (x *GetWalletsByUserIDResponse) Reset() {
+	*x = GetWalletsByUserIDResponse{}
 	mi := &file_wallets_private_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetWalletByUserIDResponse) String() string {
+func (x *GetWalletsByUserIDResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetWalletByUserIDResponse) ProtoMessage() {}
+func (*GetWalletsByUserIDResponse) ProtoMessage() {}
 
-func (x *GetWalletByUserIDResponse) ProtoReflect() protoreflect.Message {
+func (x *GetWalletsByUserIDResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_wallets_private_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -98,19 +98,19 @@ func (x *GetWalletByUserIDResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetWalletByUserIDResponse.ProtoReflect.Descriptor instead.
-func (*GetWalletByUserIDResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetWalletsByUserIDResponse.ProtoReflect.Descriptor instead.
+func (*GetWalletsByUserIDResponse) Descriptor() ([]byte, []int) {
 	return file_wallets_private_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetWalletByUserIDResponse) GetId() uint64 {
+func (x *GetWalletsByUserIDResponse) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *GetWalletByUserIDResponse) GetPubkeys() []string {
+func (x *GetWalletsByUserIDResponse) GetPubkeys() []string {
 	if x != nil {
 		return x.Pubkeys
 	}
@@ -121,14 +121,14 @@ var File_wallets_private_proto protoreflect.FileDescriptor
 
 const file_wallets_private_proto_rawDesc = "" +
 	"\n" +
-	"\x15wallets.private.proto\x12\x0fwallets.private\"3\n" +
-	"\x18GetWalletByUserIDRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x04R\x06userId\"v\n" +
-	"\x19GetWalletByUserIDResponse\x12\x0e\n" +
+	"\x15wallets.private.proto\x12\x0fwallets.private\"4\n" +
+	"\x19GetWalletsByUserIDRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\x04R\x06userId\"w\n" +
+	"\x1aGetWalletsByUserIDResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x18\n" +
-	"\apubkeys\x18\x05 \x03(\tR\apubkeysJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04J\x04\b\x04\x10\x05R\bproviderR\vis_verifiedR\x06pubkey2|\n" +
-	"\x0eWalletsPrivate\x12j\n" +
-	"\x11GetWalletByUserID\x12).wallets.private.GetWalletByUserIDRequest\x1a*.wallets.private.GetWalletByUserIDResponseB\x04Z\x02./b\x06proto3"
+	"\apubkeys\x18\x05 \x03(\tR\apubkeysJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04J\x04\b\x04\x10\x05R\bproviderR\vis_verifiedR\x06pubkey2\x7f\n" +
+	"\x0eWalletsPrivate\x12m\n" +
+	"\x12GetWalletsByUserID\x12*.wallets.private.GetWalletsByUserIDRequest\x1a+.wallets.private.GetWalletsByUserIDResponseB\x04Z\x02./b\x06proto3"
 
 var (
 	file_wallets_private_proto_rawDescOnce sync.Once
@@ -144,12 +144,12 @@ func file_wallets_private_proto_rawDescGZIP() []byte {
 
 var file_wallets_private_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_wallets_private_proto_goTypes = []any{
-	(*GetWalletByUserIDRequest)(nil),  // 0: wallets.private.GetWalletByUserIDRequest
-	(*GetWalletByUserIDResponse)(nil), // 1: wallets.private.GetWalletByUserIDResponse
+	(*GetWalletsByUserIDRequest)(nil),  // 0: wallets.private.GetWalletsByUserIDRequest
+	(*GetWalletsByUserIDResponse)(nil), // 1: wallets.private.GetWalletsByUserIDResponse
 }
 var file_wallets_private_proto_depIdxs = []int32{
-	0, // 0: wallets.private.WalletsPrivate.GetWalletByUserID:input_type -> wallets.private.GetWalletByUserIDRequest
-	1, // 1: wallets.private.WalletsPrivate.GetWalletByUserID:output_type -> wallets.private.GetWalletByUserIDResponse
+	0, // 0: wallets.private.WalletsPrivate.GetWalletsByUserID:input_type -> wallets.private.GetWalletsByUserIDRequest
+	1, // 1: wallets.private.WalletsPrivate.GetWalletsByUserID:output_type -> wallets.private.GetWalletsByUserIDResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

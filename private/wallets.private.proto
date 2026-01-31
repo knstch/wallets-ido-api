@@ -3,14 +3,14 @@ package wallets.private;
 option go_package = "./";
 
 service WalletsPrivate {
-  rpc GetWalletByUserID(GetWalletByUserIDRequest) returns (GetWalletByUserIDResponse);
+  rpc GetWalletsByUserID(GetWalletsByUserIDRequest) returns (GetWalletsByUserIDResponse);
 }
 
-message GetWalletByUserIDRequest {
+message GetWalletsByUserIDRequest {
   uint64 user_id = 1;
 }
 
-message GetWalletByUserIDResponse {
+message GetWalletsByUserIDResponse {
   uint64 id = 1;
   repeated string pubkeys = 5;
   reserved 2, 3, 4;
