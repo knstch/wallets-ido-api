@@ -6,15 +6,20 @@ service WalletsPrivate {
   rpc GetWalletsByUserID(GetWalletsByUserIDRequest) returns (GetWalletsByUserIDResponse);
 }
 
+message Wallet {
+  uint64 id = 1;
+  string pubkey = 2;
+}
+
 message GetWalletsByUserIDRequest {
   uint64 user_id = 1;
 }
 
 message GetWalletsByUserIDResponse {
-  uint64 id = 1;
-  repeated string pubkeys = 5;
-  reserved 2, 3, 4;
+  reserved 1, 2, 3, 4, 5;
   reserved "provider";
   reserved "is_verified";
   reserved "pubkey";
+  reserved "pubkeys";
+  repeated Wallet wallets = 6;
 }

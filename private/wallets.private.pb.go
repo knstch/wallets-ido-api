@@ -21,6 +21,58 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Wallet struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Pubkey        string                 `protobuf:"bytes,2,opt,name=pubkey,proto3" json:"pubkey,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Wallet) Reset() {
+	*x = Wallet{}
+	mi := &file_wallets_private_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Wallet) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Wallet) ProtoMessage() {}
+
+func (x *Wallet) ProtoReflect() protoreflect.Message {
+	mi := &file_wallets_private_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Wallet.ProtoReflect.Descriptor instead.
+func (*Wallet) Descriptor() ([]byte, []int) {
+	return file_wallets_private_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Wallet) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Wallet) GetPubkey() string {
+	if x != nil {
+		return x.Pubkey
+	}
+	return ""
+}
+
 type GetWalletsByUserIDRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        uint64                 `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -30,7 +82,7 @@ type GetWalletsByUserIDRequest struct {
 
 func (x *GetWalletsByUserIDRequest) Reset() {
 	*x = GetWalletsByUserIDRequest{}
-	mi := &file_wallets_private_proto_msgTypes[0]
+	mi := &file_wallets_private_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -42,7 +94,7 @@ func (x *GetWalletsByUserIDRequest) String() string {
 func (*GetWalletsByUserIDRequest) ProtoMessage() {}
 
 func (x *GetWalletsByUserIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_wallets_private_proto_msgTypes[0]
+	mi := &file_wallets_private_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +107,7 @@ func (x *GetWalletsByUserIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWalletsByUserIDRequest.ProtoReflect.Descriptor instead.
 func (*GetWalletsByUserIDRequest) Descriptor() ([]byte, []int) {
-	return file_wallets_private_proto_rawDescGZIP(), []int{0}
+	return file_wallets_private_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetWalletsByUserIDRequest) GetUserId() uint64 {
@@ -67,15 +119,14 @@ func (x *GetWalletsByUserIDRequest) GetUserId() uint64 {
 
 type GetWalletsByUserIDResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Pubkeys       []string               `protobuf:"bytes,5,rep,name=pubkeys,proto3" json:"pubkeys,omitempty"`
+	Wallets       []*Wallet              `protobuf:"bytes,6,rep,name=wallets,proto3" json:"wallets,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetWalletsByUserIDResponse) Reset() {
 	*x = GetWalletsByUserIDResponse{}
-	mi := &file_wallets_private_proto_msgTypes[1]
+	mi := &file_wallets_private_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -87,7 +138,7 @@ func (x *GetWalletsByUserIDResponse) String() string {
 func (*GetWalletsByUserIDResponse) ProtoMessage() {}
 
 func (x *GetWalletsByUserIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_wallets_private_proto_msgTypes[1]
+	mi := &file_wallets_private_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -100,19 +151,12 @@ func (x *GetWalletsByUserIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWalletsByUserIDResponse.ProtoReflect.Descriptor instead.
 func (*GetWalletsByUserIDResponse) Descriptor() ([]byte, []int) {
-	return file_wallets_private_proto_rawDescGZIP(), []int{1}
+	return file_wallets_private_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetWalletsByUserIDResponse) GetId() uint64 {
+func (x *GetWalletsByUserIDResponse) GetWallets() []*Wallet {
 	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetWalletsByUserIDResponse) GetPubkeys() []string {
-	if x != nil {
-		return x.Pubkeys
+		return x.Wallets
 	}
 	return nil
 }
@@ -121,12 +165,14 @@ var File_wallets_private_proto protoreflect.FileDescriptor
 
 const file_wallets_private_proto_rawDesc = "" +
 	"\n" +
-	"\x15wallets.private.proto\x12\x0fwallets.private\"4\n" +
+	"\x15wallets.private.proto\x12\x0fwallets.private\"0\n" +
+	"\x06Wallet\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x16\n" +
+	"\x06pubkey\x18\x02 \x01(\tR\x06pubkey\"4\n" +
 	"\x19GetWalletsByUserIDRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x04R\x06userId\"w\n" +
-	"\x1aGetWalletsByUserIDResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x18\n" +
-	"\apubkeys\x18\x05 \x03(\tR\apubkeysJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04J\x04\b\x04\x10\x05R\bproviderR\vis_verifiedR\x06pubkey2\x7f\n" +
+	"\auser_id\x18\x01 \x01(\x04R\x06userId\"\x95\x01\n" +
+	"\x1aGetWalletsByUserIDResponse\x121\n" +
+	"\awallets\x18\x06 \x03(\v2\x17.wallets.private.WalletR\awalletsJ\x04\b\x01\x10\x02J\x04\b\x02\x10\x03J\x04\b\x03\x10\x04J\x04\b\x04\x10\x05J\x04\b\x05\x10\x06R\bproviderR\vis_verifiedR\x06pubkeyR\apubkeys2\x7f\n" +
 	"\x0eWalletsPrivate\x12m\n" +
 	"\x12GetWalletsByUserID\x12*.wallets.private.GetWalletsByUserIDRequest\x1a+.wallets.private.GetWalletsByUserIDResponseB\x04Z\x02./b\x06proto3"
 
@@ -142,19 +188,21 @@ func file_wallets_private_proto_rawDescGZIP() []byte {
 	return file_wallets_private_proto_rawDescData
 }
 
-var file_wallets_private_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_wallets_private_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_wallets_private_proto_goTypes = []any{
-	(*GetWalletsByUserIDRequest)(nil),  // 0: wallets.private.GetWalletsByUserIDRequest
-	(*GetWalletsByUserIDResponse)(nil), // 1: wallets.private.GetWalletsByUserIDResponse
+	(*Wallet)(nil),                     // 0: wallets.private.Wallet
+	(*GetWalletsByUserIDRequest)(nil),  // 1: wallets.private.GetWalletsByUserIDRequest
+	(*GetWalletsByUserIDResponse)(nil), // 2: wallets.private.GetWalletsByUserIDResponse
 }
 var file_wallets_private_proto_depIdxs = []int32{
-	0, // 0: wallets.private.WalletsPrivate.GetWalletsByUserID:input_type -> wallets.private.GetWalletsByUserIDRequest
-	1, // 1: wallets.private.WalletsPrivate.GetWalletsByUserID:output_type -> wallets.private.GetWalletsByUserIDResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: wallets.private.GetWalletsByUserIDResponse.wallets:type_name -> wallets.private.Wallet
+	1, // 1: wallets.private.WalletsPrivate.GetWalletsByUserID:input_type -> wallets.private.GetWalletsByUserIDRequest
+	2, // 2: wallets.private.WalletsPrivate.GetWalletsByUserID:output_type -> wallets.private.GetWalletsByUserIDResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_wallets_private_proto_init() }
@@ -168,7 +216,7 @@ func file_wallets_private_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_wallets_private_proto_rawDesc), len(file_wallets_private_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
