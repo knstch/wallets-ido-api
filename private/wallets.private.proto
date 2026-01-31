@@ -12,8 +12,9 @@ message GetWalletByUserIDRequest {
 
 message GetWalletByUserIDResponse {
   uint64 id = 1;
-  string pubkey = 2;
-  reserved 3, 4;
+  repeated string pubkeys = 5;
+  reserved 2, 3, 4;
   reserved "provider";
   reserved "is_verified";
+  reserved "pubkey";
 }

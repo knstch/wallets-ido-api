@@ -68,7 +68,7 @@ func (x *GetWalletByUserIDRequest) GetUserId() uint64 {
 type GetWalletByUserIDResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Pubkey        string                 `protobuf:"bytes,2,opt,name=pubkey,proto3" json:"pubkey,omitempty"`
+	Pubkeys       []string               `protobuf:"bytes,5,rep,name=pubkeys,proto3" json:"pubkeys,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -110,11 +110,11 @@ func (x *GetWalletByUserIDResponse) GetId() uint64 {
 	return 0
 }
 
-func (x *GetWalletByUserIDResponse) GetPubkey() string {
+func (x *GetWalletByUserIDResponse) GetPubkeys() []string {
 	if x != nil {
-		return x.Pubkey
+		return x.Pubkeys
 	}
-	return ""
+	return nil
 }
 
 var File_wallets_private_proto protoreflect.FileDescriptor
@@ -123,10 +123,10 @@ const file_wallets_private_proto_rawDesc = "" +
 	"\n" +
 	"\x15wallets.private.proto\x12\x0fwallets.private\"3\n" +
 	"\x18GetWalletByUserIDRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x04R\x06userId\"f\n" +
+	"\auser_id\x18\x01 \x01(\x04R\x06userId\"v\n" +
 	"\x19GetWalletByUserIDResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x16\n" +
-	"\x06pubkey\x18\x02 \x01(\tR\x06pubkeyJ\x04\b\x03\x10\x04J\x04\b\x04\x10\x05R\bproviderR\vis_verified2|\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x18\n" +
+	"\apubkeys\x18\x05 \x03(\tR\apubkeysJ\x04\b\x02\x10\x03J\x04\b\x03\x10\x04J\x04\b\x04\x10\x05R\bproviderR\vis_verifiedR\x06pubkey2|\n" +
 	"\x0eWalletsPrivate\x12j\n" +
 	"\x11GetWalletByUserID\x12).wallets.private.GetWalletByUserIDRequest\x1a*.wallets.private.GetWalletByUserIDResponseB\x04Z\x02./b\x06proto3"
 
