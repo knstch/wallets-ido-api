@@ -179,6 +179,9 @@
         },
         "is_verified": {
           "type": "boolean"
+        },
+        "pubkey": {
+          "type": "string"
         }
       }
     },

@@ -35,6 +35,7 @@ export interface definitions {
     id?: string;
     provider?: definitions["publicProvider"];
     is_verified?: boolean;
+    pubkey?: string;
   };
   /**
    * @default PROVIDER_UNDEFINED

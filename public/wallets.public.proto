@@ -65,4 +65,5 @@ message GetWalletResponse {
   uint64 id = 1;
   Provider provider = 2;
   bool is_verified = 3;
+  string pubkey = 4;
 }

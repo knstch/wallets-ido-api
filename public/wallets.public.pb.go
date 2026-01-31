@@ -7,6 +7,7 @@
 package __
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -388,6 +389,7 @@ type GetWalletResponse struct {
 	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Provider      Provider               `protobuf:"varint,2,opt,name=provider,proto3,enum=wallets.public.Provider" json:"provider,omitempty"`
 	IsVerified    bool                   `protobuf:"varint,3,opt,name=is_verified,json=isVerified,proto3" json:"is_verified,omitempty"`
+	Pubkey        string                 `protobuf:"bytes,4,opt,name=pubkey,proto3" json:"pubkey,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -443,11 +445,18 @@ func (x *GetWalletResponse) GetIsVerified() bool {
 	return false
 }
 
+func (x *GetWalletResponse) GetPubkey() string {
+	if x != nil {
+		return x.Pubkey
+	}
+	return ""
+}
+
 var File_wallets_public_proto protoreflect.FileDescriptor
 
 const file_wallets_public_proto_rawDesc = "" +
 	"\n" +
-	"\x14wallets.public.proto\x12\x0ewallets.public\"`\n" +
+	"\x14wallets.public.proto\x12\x0ewallets.public\x1a\x1cgoogle/api/annotations.proto\"`\n" +
 	"\x10AddWalletRequest\x12\x16\n" +
 	"\x06pubkey\x18\x01 \x01(\tR\x06pubkey\x124\n" +
 	"\bprovider\x18\x02 \x01(\x0e2\x18.wallets.public.ProviderR\bprovider\"^\n" +
@@ -462,20 +471,23 @@ const file_wallets_public_proto_rawDesc = "" +
 	"\x13UnlinkWalletRequest\x12\x1b\n" +
 	"\twallet_id\x18\x01 \x01(\x04R\bwalletId\"\x16\n" +
 	"\x14UnlinkWalletResponse\"\x12\n" +
-	"\x10GetWalletRequest\"z\n" +
+	"\x10GetWalletRequest\"\x92\x01\n" +
 	"\x11GetWalletResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x124\n" +
 	"\bprovider\x18\x02 \x01(\x0e2\x18.wallets.public.ProviderR\bprovider\x12\x1f\n" +
 	"\vis_verified\x18\x03 \x01(\bR\n" +
-	"isVerified*8\n" +
+	"isVerified\x12\x16\n" +
+	"\x06pubkey\x18\x04 \x01(\tR\x06pubkey*8\n" +
 	"\bProvider\x12\x16\n" +
 	"\x12PROVIDER_UNDEFINED\x10\x00\x12\x14\n" +
-	"\x10PROVIDER_PHANTOM\x10\x012\xe3\x02\n" +
-	"\aWallets\x12P\n" +
-	"\tAddWallet\x12 .wallets.public.AddWalletRequest\x1a!.wallets.public.AddWalletResponse\x12Y\n" +
-	"\fVerifyWallet\x12#.wallets.public.VerifyWalletRequest\x1a$.wallets.public.VerifyWalletResponse\x12Y\n" +
-	"\fUnlinkWallet\x12#.wallets.public.UnlinkWalletRequest\x1a$.wallets.public.UnlinkWalletResponse\x12P\n" +
-	"\tGetWallet\x12 .wallets.public.GetWalletRequest\x1a!.wallets.public.GetWalletResponseB\x04Z\x02./b\x06proto3"
+	"\x10PROVIDER_PHANTOM\x10\x012\xc2\x03\n" +
+	"\aWallets\x12g\n" +
+	"\tAddWallet\x12 .wallets.public.AddWalletRequest\x1a!.wallets.public.AddWalletResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
+	"/addWallet\x12s\n" +
+	"\fVerifyWallet\x12#.wallets.public.VerifyWalletRequest\x1a$.wallets.public.VerifyWalletResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/verifyWallet\x12s\n" +
+	"\fUnlinkWallet\x12#.wallets.public.UnlinkWalletRequest\x1a$.wallets.public.UnlinkWalletResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/unlinkWallet\x12d\n" +
+	"\tGetWallet\x12 .wallets.public.GetWalletRequest\x1a!.wallets.public.GetWalletResponse\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
+	"/getWalletB\x04Z\x02./b\x06proto3"
 
 var (
 	file_wallets_public_proto_rawDescOnce sync.Once
