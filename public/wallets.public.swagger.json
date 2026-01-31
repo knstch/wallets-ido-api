@@ -16,14 +16,14 @@
     "application/json"
   ],
   "paths": {
-    "/addWallet": {
+    "/addWallets": {
       "post": {
-        "operationId": "Wallets_AddWallet",
+        "operationId": "Wallets_AddWallets",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/publicAddWalletResponse"
+              "$ref": "#/definitions/publicAddWalletsResponse"
             }
           },
           "default": {
@@ -39,93 +39,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/publicAddWalletRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Wallets"
-        ]
-      }
-    },
-    "/getWallet": {
-      "get": {
-        "operationId": "Wallets_GetWallet",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/publicGetWalletResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "Wallets"
-        ]
-      }
-    },
-    "/unlinkWallet": {
-      "post": {
-        "operationId": "Wallets_UnlinkWallet",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/publicUnlinkWalletResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/publicUnlinkWalletRequest"
-            }
-          }
-        ],
-        "tags": [
-          "Wallets"
-        ]
-      }
-    },
-    "/verifyWallet": {
-      "post": {
-        "operationId": "Wallets_VerifyWallet",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/publicVerifyWalletResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/publicVerifyWalletRequest"
+              "$ref": "#/definitions/publicAddWalletsRequest"
             }
           }
         ],
@@ -145,81 +59,18 @@
       },
       "additionalProperties": {}
     },
-    "publicAddWalletRequest": {
+    "publicAddWalletsRequest": {
       "type": "object",
       "properties": {
-        "pubkey": {
-          "type": "string"
-        },
-        "provider": {
-          "$ref": "#/definitions/publicProvider"
+        "pubkeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
-    "publicAddWalletResponse": {
-      "type": "object",
-      "properties": {
-        "challenge_id": {
-          "type": "string"
-        },
-        "message_to_sign": {
-          "type": "string"
-        }
-      }
-    },
-    "publicGetWalletResponse": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "format": "uint64"
-        },
-        "provider": {
-          "$ref": "#/definitions/publicProvider"
-        },
-        "is_verified": {
-          "type": "boolean"
-        },
-        "pubkey": {
-          "type": "string"
-        }
-      }
-    },
-    "publicProvider": {
-      "type": "string",
-      "enum": [
-        "PROVIDER_UNDEFINED",
-        "PROVIDER_PHANTOM"
-      ],
-      "default": "PROVIDER_UNDEFINED"
-    },
-    "publicUnlinkWalletRequest": {
-      "type": "object",
-      "properties": {
-        "wallet_id": {
-          "type": "string",
-          "format": "uint64"
-        }
-      }
-    },
-    "publicUnlinkWalletResponse": {
-      "type": "object"
-    },
-    "publicVerifyWalletRequest": {
-      "type": "object",
-      "properties": {
-        "challenge_id": {
-          "type": "string"
-        },
-        "signature": {
-          "type": "string"
-        },
-        "pubkey": {
-          "type": "string"
-        }
-      }
-    },
-    "publicVerifyWalletResponse": {
+    "publicAddWalletsResponse": {
       "type": "object"
     },
     "rpcStatus": {

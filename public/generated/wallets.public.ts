@@ -4,17 +4,8 @@
  */
 
 export interface paths {
-  "/addWallet": {
-    post: operations["Wallets_AddWallet"];
-  };
-  "/getWallet": {
-    get: operations["Wallets_GetWallet"];
-  };
-  "/unlinkWallet": {
-    post: operations["Wallets_UnlinkWallet"];
-  };
-  "/verifyWallet": {
-    post: operations["Wallets_VerifyWallet"];
+  "/addWallets": {
+    post: operations["Wallets_AddWallets"];
   };
 }
 
@@ -22,37 +13,10 @@ export interface definitions {
   protobufAny: {
     "@type"?: string;
   } & { [key: string]: unknown };
-  publicAddWalletRequest: {
-    pubkey?: string;
-    provider?: definitions["publicProvider"];
+  publicAddWalletsRequest: {
+    pubkeys?: string[];
   };
-  publicAddWalletResponse: {
-    challenge_id?: string;
-    message_to_sign?: string;
-  };
-  publicGetWalletResponse: {
-    /** Format: uint64 */
-    id?: string;
-    provider?: definitions["publicProvider"];
-    is_verified?: boolean;
-    pubkey?: string;
-  };
-  /**
-   * @default PROVIDER_UNDEFINED
-   * @enum {string}
-   */
-  publicProvider: "PROVIDER_UNDEFINED" | "PROVIDER_PHANTOM";
-  publicUnlinkWalletRequest: {
-    /** Format: uint64 */
-    wallet_id?: string;
-  };
-  publicUnlinkWalletResponse: { [key: string]: unknown };
-  publicVerifyWalletRequest: {
-    challenge_id?: string;
-    signature?: string;
-    pubkey?: string;
-  };
-  publicVerifyWalletResponse: { [key: string]: unknown };
+  publicAddWalletsResponse: { [key: string]: unknown };
   rpcStatus: {
     /** Format: int32 */
     code?: number;
@@ -62,62 +26,16 @@ export interface definitions {
 }
 
 export interface operations {
-  Wallets_AddWallet: {
+  Wallets_AddWallets: {
     parameters: {
       body: {
-        body: definitions["publicAddWalletRequest"];
+        body: definitions["publicAddWalletsRequest"];
       };
     };
     responses: {
       /** A successful response. */
       200: {
-        schema: definitions["publicAddWalletResponse"];
-      };
-      /** An unexpected error response. */
-      default: {
-        schema: definitions["rpcStatus"];
-      };
-    };
-  };
-  Wallets_GetWallet: {
-    responses: {
-      /** A successful response. */
-      200: {
-        schema: definitions["publicGetWalletResponse"];
-      };
-      /** An unexpected error response. */
-      default: {
-        schema: definitions["rpcStatus"];
-      };
-    };
-  };
-  Wallets_UnlinkWallet: {
-    parameters: {
-      body: {
-        body: definitions["publicUnlinkWalletRequest"];
-      };
-    };
-    responses: {
-      /** A successful response. */
-      200: {
-        schema: definitions["publicUnlinkWalletResponse"];
-      };
-      /** An unexpected error response. */
-      default: {
-        schema: definitions["rpcStatus"];
-      };
-    };
-  };
-  Wallets_VerifyWallet: {
-    parameters: {
-      body: {
-        body: definitions["publicVerifyWalletRequest"];
-      };
-    };
-    responses: {
-      /** A successful response. */
-      200: {
-        schema: definitions["publicVerifyWalletResponse"];
+        schema: definitions["publicAddWalletsResponse"];
       };
       /** An unexpected error response. */
       default: {

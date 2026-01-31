@@ -6,11 +6,6 @@ service WalletsPrivate {
   rpc GetWalletByUserID(GetWalletByUserIDRequest) returns (GetWalletByUserIDResponse);
 }
 
-enum Provider {
-  PROVIDER_UNDEFINED = 0;
-  PROVIDER_PHANTOM = 1;
-}
-
 message GetWalletByUserIDRequest {
   uint64 user_id = 1;
 }
@@ -18,6 +13,7 @@ message GetWalletByUserIDRequest {
 message GetWalletByUserIDResponse {
   uint64 id = 1;
   string pubkey = 2;
-  Provider provider = 3;
-  bool is_verified = 4;
+  reserved 3, 4;
+  reserved "provider";
+  reserved "is_verified";
 }
