@@ -1,0 +1,13 @@
+{
+  "name": "wallets-ido-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API schema and generators for users service (Proto -> OpenAPI -> TypeScript types)",
+  "scripts": {
+    "gen:openapi": "make -C public openapi",
+    "gen:types": "npx openapi-typescript@5 public/wallets.public.swagger.json -o public/generated/wallets.public.ts",
+    "gen:api": "npm run gen:openapi && npm run gen:types"
+  },
+  "devDependencies": {}
+}
+
